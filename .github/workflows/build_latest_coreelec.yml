@@ -13,7 +13,7 @@ jobs:
         run: sudo apt update -y && sudo apt install -y make gcc git texinfo gzip squashfs-tools jq
 
       - name: building
-        run: sh ./build.sh
+        run: sudo sh ./build.sh
         
       - uses: xresloader/upload-to-github-release@v1
         env:
