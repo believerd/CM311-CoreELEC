@@ -2,6 +2,7 @@ name: Build Latest CoreELEC
 
 on:
   workflow_dispatch:
+  #when coreelec uploads a new release
 
 jobs:
   build:
@@ -12,20 +13,6 @@ jobs:
       - name: install required packages
         run: sudo apt update -y && sudo apt install -y make gcc git texinfo gzip squashfs-tools jq
         
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
-        with:
-          # this might remove tools that are actually needed,
-          # when set to "true" but frees about 6 GB
-          tool-cache: true       
-          # all of these default to true, but feel free to set to
-          # "false" if necessary for your workflow
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          swap-storage: true
-
       - name: building
         run: sudo sh ./build.sh
         
@@ -34,3 +21,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           file: "*.gz;*.sha256"
+          draft: true
+          update_latest_release: true
+          
