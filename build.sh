@@ -1,8 +1,11 @@
 #! /bin/sh
-version="19.5-Matrix_rc2"
+
+latest_download_url=$(curl -s https://api.github.com/repos/CoreELEC/CoreELEC/releases/latest | jq -r '.assets[] | select(.name | test("Generic.img.gz$")) | .browser_download_url' | head -n1)
+
+version="$(echo $latest_download_url | cut -d '/' -f8)"
 source_img_name="CoreELEC-Amlogic-ng.arm-${version}-Generic"
 source_img_file="${source_img_name}.img.gz"
-source_img_url="https://ghproxy.com/https://github.com/CoreELEC/CoreELEC/releases/download/${version}/${source_img_name}.img.gz"
+source_img_url="$latest_download_url"
 target_img_prefix="CoreELEC-Amlogic-ng.arm-${version}"
 target_img_name="${target_img_prefix}-CM311-1a-$(date +%Y.%m.%d)"
 mount_point="target"
