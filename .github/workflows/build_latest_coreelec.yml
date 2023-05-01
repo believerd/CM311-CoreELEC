@@ -10,10 +10,10 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: install required packages
-        run: apt update -y && apt install -y make gcc git texinfo gzip squashfs-tools jq
+        run: sudo apt update -y && sudo apt install -y make gcc git texinfo gzip squashfs-tools jq
 
       - name: building
-        run: ./build.sh
+        run: sh ./build.sh
         
       - uses: xresloader/upload-to-github-release@v1
         env:
