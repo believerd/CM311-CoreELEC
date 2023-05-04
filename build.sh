@@ -63,6 +63,7 @@ sudo ln -s ../rtkbt-firmware-aml.service ${systemd_path}/multi-user.target.wants
 echo "Compressing SYSTEM image"
 sudo mksquashfs ${system_root} SYSTEM -comp lzo -Xalgorithm lzo1x_999 -Xcompression-level 9 -b 524288 -no-xattrs
 echo "Replacing SYSTEM image"
+df -h
 sudo rm ${mount_point}/SYSTEM.md5
 sudo dd if=/dev/zero of=${mount_point}/SYSTEM
 sudo sync
