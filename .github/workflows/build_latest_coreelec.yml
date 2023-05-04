@@ -1,10 +1,7 @@
 name: Build Latest CoreELEC
 
 on:
-  schedule:
-    - cron:  '0 0 1 * *'
   workflow_dispatch:
-  #when coreelec uploads a new release
 
 jobs:
   build:
